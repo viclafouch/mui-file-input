@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
+import { matchIsNonEmptyArray } from '@shared/helpers/array'
 import {
   fileListToArray,
   getTotalFilesSize,
@@ -17,22 +18,29 @@ import type { MuiFileInputProps } from './index.types'
 
 export { MuiFileInputProps }
 
+type NonUndefined<T> = T extends undefined ? never : T
+
 // eslint-disable-next-line react/function-component-definition
-function MuiFileInput(
-  props: MuiFileInputProps,
-  propRef: MuiFileInputProps['ref']
-) {
+function MuiFileInput<T extends boolean = false>(props: MuiFileInputProps<T>) {
   const {
     value,
     onChange,
     disabled,
-    multiple,
     getInputText,
     getSizeText,
     placeholder,
+    hideSizeText,
+    inputProps,
+    InputProps,
+    multiple,
     ...restTextFieldProps
-  } = props as MuiFileInputProps & { value: File[] | File | null }
+  } = props
   const inputRef = React.useRef<HTMLInputElement>(null)
+  const isMultiple =
+    multiple ||
+    (inputProps?.multiple as boolean) ||
+    (InputProps?.inputProps?.multiple as boolean) ||
+    false
 
   const clearInputValue = () => {
     const inputEl = inputRef.current
@@ -45,7 +53,11 @@ function MuiFileInput(
     const fileList = event.target.files
     const files = fileList ? fileListToArray(fileList) : []
     clearInputValue()
-    onChange?.(files)
+    if (isMultiple) {
+      onChange?.(files as NonNullable<typeof value>)
+    } else {
+      onChange?.(files[0] as NonNullable<typeof value>)
+    }
   }
 
   const handleClearAll = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -56,41 +68,39 @@ function MuiFileInput(
     }
 
     if (multiple) {
-      onChange?.([])
+      onChange?.([] as unknown as NonNullable<typeof value>)
     } else {
-      onChange?.(null)
+      onChange?.(null as NonUndefined<typeof value>)
     }
   }
 
-  const { InputProps } = restTextFieldProps || {}
-  const isMultiple = multiple && Array.isArray(value)
   const hasAtLeastOneFile = Array.isArray(value)
-    ? value.length > 0
+    ? matchIsNonEmptyArray(value)
     : matchIsFile(value)
 
   const getTheInputText = (): string => {
-    if (value === null || (isMultiple && value.length === 0)) {
+    if (value === null || (Array.isArray(value) && value.length === 0)) {
       return placeholder || ''
     }
-    if (typeof getInputText === 'function') {
+    if (typeof getInputText === 'function' && value !== undefined) {
       return getInputText(value)
     }
-    if (value !== null && hasAtLeastOneFile) {
-      if (isMultiple && value.length > 1) {
+    if (value && hasAtLeastOneFile) {
+      if (Array.isArray(value) && value.length > 1) {
         return `${value.length} files`
       }
-      const filename = matchIsFile(value) ? value.name : value[0].name
+      const filename = matchIsFile(value) ? value.name : value[0]?.name || ''
       return truncateText(filename, 20)
     }
     return ''
   }
 
   const getTotalSizeText = (): string => {
-    if (typeof getSizeText === 'function') {
+    if (typeof getSizeText === 'function' && value !== undefined) {
       return getSizeText(value)
     }
     if (hasAtLeastOneFile) {
-      if (isMultiple) {
+      if (Array.isArray(value)) {
         const totalSize = getTotalFilesSize(value)
         return prettyBytes(totalSize)
       }
@@ -104,7 +114,6 @@ function MuiFileInput(
   return (
     <TextField
       type="file"
-      ref={propRef}
       disabled={disabled}
       onChange={handleChange}
       InputProps={{
@@ -118,9 +127,11 @@ function MuiFileInput(
             position="end"
             style={{ visibility: hasAtLeastOneFile ? 'visible' : 'hidden' }}
           >
-            <Typography variant="caption" mr="2px">
-              {getTotalSizeText()}
-            </Typography>
+            {!hideSizeText ? (
+              <Typography variant="caption" mr="2px">
+                {getTotalSizeText()}
+              </Typography>
+            ) : null}
             <IconButton
               aria-label="Clear"
               title="Clear"
@@ -135,11 +146,15 @@ function MuiFileInput(
         ...InputProps,
         inputProps: {
           text: getTheInputText(),
-          multiple,
-          isPlaceholder: value === null || (isMultiple && value.length === 0),
+          multiple: isMultiple,
+          isPlaceholder:
+            value === null || (Array.isArray(value) && value.length === 0),
           ref: inputRef,
+          placeholder,
+          ...inputProps,
           ...InputProps?.inputProps
         },
+        // @ts-ignore
         inputComponent: Input
       }}
       {...restTextFieldProps}
@@ -147,10 +162,4 @@ function MuiFileInput(
   )
 }
 
-const MuiFileInputWithRef = React.forwardRef(MuiFileInput)
-
-MuiFileInputWithRef.defaultProps = {
-  value: []
-}
-
-export { MuiFileInputWithRef as MuiFileInput }
+export { MuiFileInput }

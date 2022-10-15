@@ -5,10 +5,11 @@ type TextFieldProps = Omit<
   'onChange' | 'select' | 'type' | 'multiline' | 'defaultValue'
 >
 
-export type MuiFileInputProps = {
-  value?: File[] | File | null
-  multiple?: boolean
-  getInputText?: (files: File[] | File | null) => string
-  getSizeText?: (files: File[] | File | null) => string
-  onChange?: (value: File[] | File | null) => void
+export type MuiFileInputProps<T extends boolean = false> = {
+  value?: T extends true ? File[] : File | null
+  hideSizeText?: boolean
+  multiple?: T
+  getInputText?: (files: T extends true ? File[] : File | null) => string
+  getSizeText?: (files: T extends true ? File[] : File | null) => string
+  onChange?: (value: T extends true ? File[] : File | null) => void
 } & TextFieldProps
