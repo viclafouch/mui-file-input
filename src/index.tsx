@@ -33,6 +33,7 @@ function MuiFileInput<T extends boolean = false>(props: MuiFileInputProps<T>) {
     inputProps,
     InputProps,
     multiple,
+    className,
     ...restTextFieldProps
   } = props
   const inputRef = React.useRef<HTMLInputElement>(null)
@@ -116,6 +117,7 @@ function MuiFileInput<T extends boolean = false>(props: MuiFileInputProps<T>) {
       type="file"
       disabled={disabled}
       onChange={handleChange}
+      className={`MuiFileInput-TextField ${className || ''}`}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
@@ -128,7 +130,11 @@ function MuiFileInput<T extends boolean = false>(props: MuiFileInputProps<T>) {
             style={{ visibility: hasAtLeastOneFile ? 'visible' : 'hidden' }}
           >
             {!hideSizeText ? (
-              <Typography variant="caption" mr="2px">
+              <Typography
+                variant="caption"
+                mr="2px"
+                className="MuiFileInput-Typography-size-text"
+              >
                 {getTotalSizeText()}
               </Typography>
             ) : null}
@@ -137,6 +143,7 @@ function MuiFileInput<T extends boolean = false>(props: MuiFileInputProps<T>) {
               title="Clear"
               size="small"
               disabled={disabled}
+              className="MuiFileInput-IconButton"
               onClick={handleClearAll}
             >
               <CloseIcon fontSize="small" />
