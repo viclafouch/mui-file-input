@@ -1,15 +1,16 @@
 <div align="center">
   <img src="https://viclafouch.github.io/mui-file-input/img/logo.svg" width="80" />
-</div>
+
 <h1>MUI file input</h1>
   <p>A file input designed for the React library <a href="https://mui.com/">MUI</a></p>
+</div>
 </div>
 <div align="center">
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/viclafouch/mui-file-input/blob/main/LICENSE)
 ![ts](https://badgen.net/badge/Built%20With/TypeScript/blue)
 [![npm](https://img.shields.io/npm/v/mui-file-input)](https://www.npmjs.com/package/mui-file-input)
-[![CircleCI](https://circleci.com/gh/viclafouch/mui-file-input/tree/master.svg?style=svg)](https://circleci.com/gh/viclafouch/mui-file-input/tree/main)
+[![CircleCI](https://circleci.com/gh/viclafouch/mui-file-input/tree/main.svg?style=svg)](https://circleci.com/gh/viclafouch/mui-file-input/tree/main)
 </div>
 
 ## Installation
