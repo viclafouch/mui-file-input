@@ -3,11 +3,15 @@
 }
 
 
-.MuiFileInput-TextField input {
+.MuiFileInput-TextField input + span,
+.MuiFileInput-TextField .MuiFileInput-Typography-size-text,
+.MuiFileInput-TextField svg {
   color: var(--ifm-color-black);
 }
 
-[data-theme="dark"] .MuiFileInput-TextField input {
+[data-theme="dark"] .MuiFileInput-TextField input + span,
+[data-theme="dark"] .MuiFileInput-TextField .MuiFileInput-Typography-size-text,
+[data-theme="dark"] .MuiFileInput-TextField svg {
   color: var(--ifm-color-white);
 }
 

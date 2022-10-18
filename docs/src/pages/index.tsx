@@ -10,6 +10,11 @@ import '../css/index.css'
 
 const HomepageHeader = () => {
   const { siteConfig } = useDocusaurusContext()
+  const [files, setFiles] = React.useState<File[]>([])
+
+  const handleChange = (newFiles: File[]) => {
+    setFiles(newFiles)
+  }
 
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
@@ -19,7 +24,12 @@ const HomepageHeader = () => {
         <p className={clsx('hero__subtitle', styles.subtitle)}>
           {siteConfig.tagline}
         </p>
-        <MuiFileInput />
+        <MuiFileInput
+          value={files}
+          multiple
+          onChange={handleChange}
+          placeholder="Insert a file"
+        />
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"

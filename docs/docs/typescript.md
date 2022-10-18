@@ -6,33 +6,24 @@ sidebar_position: 4
 
 This package is written in **TypeScript**. So you don't need to create your own types. Here an example if you use **TypeScript**.
 
-**Nota bene**: Props are defined within the `MuiTelInputProps` interface.
+**Nota bene**: Props are defined within the `MuiFileInputProps` interface.
 
 ```tsx
 import React from 'react'
-import {
-  MuiTelInput,
-  MuiTelInputCountry,
-  MuiTelInputInfo,
-  MuiTelInputContinent
-} from 'mui-tel-input'
+import { MuiFileInput } from 'mui-file-input'
 
 const MyComponent = () => {
-  const [value, setValue] = React.useState<string>('')
+  const [value, setValue] = React.useState<File | null>(null)
 
-  const handleChange = (newValue: string, info: MuiTelInputInfo) => {
+  const handleChange = (newValue: File) => {
     setValue(newValue)
   }
 
-  const continents: MuiTelInputContinent[] = ['EU']
-  const excludedCountries: MuiTelInputCountry[] = ['FR']
-
   return (
-    <MuiTelInput
+    <MuiFileInput
       value={value}
       onChange={handleChange}
-      continents={continents}
-      excludedCountries={excludedCountries}
+      hideSizeText
     />
   )
 }

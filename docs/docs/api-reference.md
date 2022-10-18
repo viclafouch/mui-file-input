@@ -4,157 +4,89 @@ sidebar_position: 3
 
 # API Reference
 
-This article discusses the API and props of **MuiTelInput**. Props are defined within `MuiTelInputProps`.
+This article discusses the API and props of **MuiFileInput**. Props are defined within `MuiFileInputProps`.
 
 ## `value`
 
-- Type: `string` | `undefined`
-- Default: `''`
+- Type: `File` | `null` | `undefined`
+- or if `multiple` is present: `File[]` | `undefined`
+- Default: `undefined`
 
 ### Example
 
 ```tsx
-<MuiTelInput />
-<MuiTelInput value="+12133734253" />
+const file = new File(["foo"], "foo.txt", {
+  type: "text/plain",
+});
+
+<MuiFileInput />
+<MuiFileInput value={file} />
+<MuiFileInput multiple value={[file]}/>
 ```
 
 ## `onChange`
 
-- Type: `(value: string, info: MuiTelInputInfo) => void`
+- Type: `(value: File | File[]) => void`
 - Default: `undefined`
 
-Gets called once the user updates the tel value.
-
-The callback gives you **2 parameters**:
-  1. The new tel [value](#value) stringified
-  2. An object of different useful informations about the tel (`country`, `extension`, etc..)
+Gets called once the user updates the file value.
 
 Example:
 
 ```tsx
 
-const handleChange = (value, info) => {
+const handleChange = (value) => {
   /**
-  value: "+33123456789"
-  info: {
-    countryCallingCode: "33",
-    countryCode: "FR",
-    nationalNumber: "123456789",
-    numberValue: "+33123456789",
-    reason: "input"
-  }
+  value: File
   **/
 }
 
-<MuiTelInput onChange={handleChange} />
+<MuiFileInput onChange={handleChange} />
 ```
 
-## `forceCallingCode`
+## `multiple`
 
 - Type: `boolean`
 - Default: `false`
 
-Force the calling code (e.g: +33) to be displayed so the value cannot be empty.
+Like the native `multiple` attribute, when present, it specifies that the user is allowed to enter more than one value in the `<input>` element.
+The type of the `value` prop will be `File[]` instead of `File`.
 
 ```tsx
-<MuiTelInput forceCallingCode />
+// TS will throw an error if the value is a single File instead of an array of Files.
+<MuiFileInput multiple />
 ```
 
-## `focusOnSelectCountry`
+## `hideSizeText`
 
 - Type: `boolean`
 - Default: `false`
 
-Autofocus the input when the user selects a country in the list.
+In case you do not want to display the size of the current value.
 
 ```tsx
-<MuiTelInput focusOnSelectCountry />
+<MuiFileInput hideSizeText />
 ```
 
-## `onlyCountries`
+## `getInputText`
 
-- Type: `MuiTelInputCountry[]`
+- Type: `(value: File | File[] | null | undefined) => string`
 - Default: `undefined`
 
-[Country codes](/docs/country-codes) to be included in the list of countries.
+Customize the render text inside the TextField.
 
 ```tsx
-<MuiTelInput onlyCountries={['FR', 'BE']} />
+<MuiFileInput getInputText={(value) => value ? 'Thanks!' : ''} />
 ```
 
-## `excludedCountries`
+## `getSizeText`
 
-- Type: `MuiTelInputCountry[]`
+- Type: `(value: File | File[] | null | undefined) => string`
 - Default: `undefined`
 
-[Country codes](/docs/country-codes) to be excluded of the list of countries.
+Customize the render text inside the size Typography.
 
 ```tsx
-<MuiTelInput excludedCountries={['CA', 'PT']} />
+<MuiFileInput getSizeText={(value) => 'Very big'} />
 ```
 
-## `preferredCountries`
-
-- Type: `MuiTelInputCountry[]`
-- Default: `undefined`
-
-[Country codes](/docs/country-codes) to be highlighted to the top of the list of countries.
-
-```tsx
-<MuiTelInput preferredCountries={['BE', 'FR']} />
-```
-
-## `continents`
-
-- Type: `MuiTelInputContinent[]`
-- Default: `undefined`
-
-[Continent codes](/docs/continent-codes) to include a group of countries.
-
-```tsx
-<MuiTelInput continents={['EU', 'OC']} />
-```
-
-## `disableDropdown`
-
-- Type: `boolean`
-- Default: `false`
-
-No country list / The current flag is a `span` instead of a `button`.
-
-```tsx
-<MuiTelInput disableDropdown />
-```
-
-## `disableFormatting`
-
-- Type: `boolean`
-- Default: `false`
-
-Remove format (spaces..) from the input value.
-
-```tsx
-<MuiTelInput disableFormatting />
-```
-
-## `langOfCountryName`
-
-- Type: `string`
-- Default: `en`
-
-An `Intl` locale to translate country names (see [Intl locales](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DisplayNames/DisplayNames)). All countries will be translated in this language.
-
-```tsx
-<MuiTelInput langOfCountryName="fr" />
-```
-
-## `MenuProps`
-
-- Type: [MenuProps](https://mui.com/material-ui/api/menu/)
-- Default: `undefined`
-
-Props for the MUI [Menu](https://mui.com/material-ui/api/menu/) component.
-
-```tsx
-<MuiTelInput MenuProps={{ disableAutoFocusItem: true }} />
-```

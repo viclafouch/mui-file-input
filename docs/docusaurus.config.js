@@ -52,9 +52,9 @@ const config = {
         respectPrefersColorScheme: false
       },
       navbar: {
-        title: 'MUI tel input',
+        title: 'MUI file input',
         logo: {
-          alt: 'MUI tel input',
+          alt: 'MUI file input',
           src: 'img/logo.svg'
         },
         items: [
