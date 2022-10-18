@@ -1,8 +1,9 @@
 <div align="center">
   <img src="https://viclafouch.github.io/mui-file-input/img/logo.svg" width="80" />
-</div>
+
 <h1>MUI file input</h1>
   <p>A file input designed for the React library <a href="https://mui.com/">MUI</a></p>
+</div>
 </div>
 <div align="center">
 
