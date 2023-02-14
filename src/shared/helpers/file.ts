@@ -5,7 +5,8 @@ export function getTotalFilesSize(files: File[]): number {
 }
 
 export function matchIsFile(value: unknown): value is File {
-  return value instanceof File
+  // Secure SSR
+  return typeof window !== 'undefined' && value instanceof File
 }
 
 export function fileListToArray(filelist: FileList): File[] {

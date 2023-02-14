@@ -1,6 +1,5 @@
 import React from 'react'
 import { InputBaseComponentProps } from '@mui/material/InputBase'
-import { generateUuid } from '@shared/helpers/string'
 import Styled from './Input.styled'
 
 type InputProps = InputBaseComponentProps & {
@@ -12,9 +11,7 @@ const Input = React.forwardRef(
   (props: InputProps, ref: React.ForwardedRef<HTMLInputElement>) => {
     const { text, isPlaceholder, placeholder, ...restInputProps } = props
     // eslint-disable-next-line react/hook-use-state
-    const [id] = React.useState<string>(() => {
-      return generateUuid()
-    })
+    const id = React.useId()
 
     return (
       <Styled.Label htmlFor={id}>
