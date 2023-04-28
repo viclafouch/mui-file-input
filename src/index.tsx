@@ -114,6 +114,7 @@ function MuiFileInput<T extends boolean = false>(props: MuiFileInputProps<T>) {
 
   return (
     <TextField
+      sx={{ '& .MuiInputBase-root label': { width: '100%' } }}
       type="file"
       disabled={disabled}
       onChange={handleChange}

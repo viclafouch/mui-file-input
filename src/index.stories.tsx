@@ -32,3 +32,27 @@ export const Primary: ComponentStory<typeof MuiFileInput> = () => {
     </ThemeProvider>
   )
 }
+
+export const FullWidth: ComponentStory<typeof MuiFileInput> = () => {
+  const [value, setValue] = React.useState<File[]>([])
+
+  const handleChange = (newValue: File[]) => {
+    setValue(newValue)
+  }
+
+  return (
+    <ThemeProvider theme={theme}>
+      <MuiFileInput
+        fullWidth
+        placeholder="Choisir un fichier"
+        inputProps={{
+          accept: 'video/*'
+        }}
+        multiple
+        value={value}
+        onChange={handleChange}
+        label="fullWidth"
+      />
+    </ThemeProvider>
+  )
+}
