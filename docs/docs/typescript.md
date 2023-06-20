@@ -15,7 +15,7 @@ import { MuiFileInput } from 'mui-file-input'
 const MyComponent = () => {
   const [value, setValue] = React.useState<File | null>(null)
 
-  const handleChange = (newValue: File) => {
+  const handleChange = (newValue: File | null) => {
     setValue(newValue)
   }
 
