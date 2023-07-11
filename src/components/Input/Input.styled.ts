@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles'
 
 const Label = styled('label')`
   position: relative;
+  flex-grow: 1;
 
   input {
     opacity: 0 !important;
