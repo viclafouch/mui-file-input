@@ -22,6 +22,7 @@ export default defineConfig({
       fileName: format => `mui-file-input.${format}.js`
     },
     rollupOptions: {
+      external: ['pretty-bytes'],
       output: {
         sourcemapExcludeSources: true,
         globals: {
