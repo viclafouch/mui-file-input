@@ -24,6 +24,6 @@
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["vite.config.ts", "coverage", "dist", ],
+  "exclude": ["vite.config.ts", "coverage", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
