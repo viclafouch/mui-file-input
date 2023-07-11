@@ -45,6 +45,7 @@ function MuiFileInput<T extends boolean = false>(props: MuiFileInputProps<T>) {
 
   const clearInputValue = () => {
     const inputEl = inputRef.current
+
     if (inputEl) {
       inputEl.value = ''
     }
@@ -54,6 +55,7 @@ function MuiFileInput<T extends boolean = false>(props: MuiFileInputProps<T>) {
     const fileList = event.target.files
     const files = fileList ? fileListToArray(fileList) : []
     clearInputValue()
+
     if (isMultiple) {
       onChange?.(files as NonNullable<typeof value>)
     } else {
@@ -83,16 +85,21 @@ function MuiFileInput<T extends boolean = false>(props: MuiFileInputProps<T>) {
     if (value === null || (Array.isArray(value) && value.length === 0)) {
       return placeholder || ''
     }
+
     if (typeof getInputText === 'function' && value !== undefined) {
       return getInputText(value)
     }
+
     if (value && hasAtLeastOneFile) {
       if (Array.isArray(value) && value.length > 1) {
         return `${value.length} files`
       }
+
       const filename = matchIsFile(value) ? value.name : value[0]?.name || ''
+
       return truncateText(filename, 20)
     }
+
     return ''
   }
 
@@ -100,15 +107,19 @@ function MuiFileInput<T extends boolean = false>(props: MuiFileInputProps<T>) {
     if (typeof getSizeText === 'function' && value !== undefined) {
       return getSizeText(value)
     }
+
     if (hasAtLeastOneFile) {
       if (Array.isArray(value)) {
         const totalSize = getTotalFilesSize(value)
+
         return prettyBytes(totalSize)
       }
+
       if (matchIsFile(value)) {
         return prettyBytes(value.size)
       }
     }
+
     return ''
   }
 
