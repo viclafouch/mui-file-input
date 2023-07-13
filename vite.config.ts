@@ -35,6 +35,7 @@ export default defineConfig({
           '@mui/icons-material/Close': 'CloseIcon',
           '@mui/material/InputAdornment': 'InputAdornment',
           'react/jsx-runtime': 'jsxRuntime',
+          'pretty-bytes': 'prettyBytes'
         }
       }
     }
