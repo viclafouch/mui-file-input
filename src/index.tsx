@@ -20,8 +20,10 @@ export { MuiFileInputProps }
 
 type NonUndefined<T> = T extends undefined ? never : T
 
-// eslint-disable-next-line react/function-component-definition
-function MuiFileInput<T extends boolean = false>(props: MuiFileInputProps<T>) {
+const MuiFileInput = <T extends boolean = false>(
+  props: MuiFileInputProps<T>,
+  propRef: MuiFileInputProps['ref']
+) => {
   const {
     value,
     onChange,
@@ -125,6 +127,7 @@ function MuiFileInput<T extends boolean = false>(props: MuiFileInputProps<T>) {
 
   return (
     <TextField
+      ref={propRef}
       type="file"
       disabled={disabled}
       onChange={handleChange}
@@ -180,4 +183,10 @@ function MuiFileInput<T extends boolean = false>(props: MuiFileInputProps<T>) {
   )
 }
 
-export { MuiFileInput }
+const MuiFileInputForwarded = React.forwardRef(MuiFileInput) as <
+  T extends boolean
+>(
+  props: MuiFileInputProps<T> & { ref?: MuiFileInputProps['ref'] }
+) => ReturnType<typeof MuiFileInput>
+
+export { MuiFileInputForwarded as MuiFileInput }
