@@ -20,9 +20,9 @@ export { MuiFileInputProps }
 
 type NonUndefined<T> = T extends undefined ? never : T
 
-const MuiFileInput = <T extends boolean = false>(
+const MuiFileInput = <T extends boolean | undefined>(
   props: MuiFileInputProps<T>,
-  propRef: MuiFileInputProps['ref']
+  propRef: MuiFileInputProps<T>['ref']
 ) => {
   const {
     value,
@@ -184,9 +184,9 @@ const MuiFileInput = <T extends boolean = false>(
 }
 
 const MuiFileInputForwarded = React.forwardRef(MuiFileInput) as <
-  T extends boolean
+  T extends boolean | undefined = false
 >(
-  props: MuiFileInputProps<T> & { ref?: MuiFileInputProps['ref'] }
-) => ReturnType<typeof MuiFileInput>
+  props: MuiFileInputProps<T> & { ref?: MuiFileInputProps<T>['ref'] }
+) => ReturnType<typeof MuiFileInput<T>>
 
 export { MuiFileInputForwarded as MuiFileInput }
