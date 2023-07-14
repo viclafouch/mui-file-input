@@ -26,8 +26,8 @@ const file = new File(["foo"], "foo.txt", {
 
 ## `onChange`
 
-- Type: `(value: File | File[]) => void`
-- Default: `undefined`
+- Type: `File` | `null`
+- or if `multiple` is present: `File[]`
 
 Gets called once the user updates the file value.
 
@@ -35,11 +35,7 @@ Example:
 
 ```tsx
 
-const handleChange = (value) => {
-  /**
-  value: File
-  **/
-}
+const handleChange = (value) => {}
 
 <MuiFileInput onChange={handleChange} />
 ```
@@ -70,7 +66,8 @@ In case you do not want to display the size of the current value.
 
 ## `getInputText`
 
-- Type: `(value: File | File[] | null | undefined) => string`
+- Type: `(value: File | null) => string`
+- or if `multiple` is present: `(value: File[]) => string`
 - Default: `undefined`
 
 Customize the render text inside the TextField.
@@ -81,7 +78,8 @@ Customize the render text inside the TextField.
 
 ## `getSizeText`
 
-- Type: `(value: File | File[] | null | undefined) => string`
+- Type: `(value: File | null) => string`
+- or if `multiple` is present: `(value: File[]) => string`
 - Default: `undefined`
 
 Customize the render text inside the size Typography.
