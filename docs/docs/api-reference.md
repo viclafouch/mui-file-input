@@ -26,8 +26,8 @@ const file = new File(["foo"], "foo.txt", {
 
 ## `onChange`
 
-- Type: `File` | `null`
-- or if `multiple` is present: `File[]`
+- Type: `(value: File | null) => void`
+- or if `multiple` is present: `(value: File[]) => void`
 
 Gets called once the user updates the file value.
 
