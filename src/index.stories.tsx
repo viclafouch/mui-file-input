@@ -20,6 +20,7 @@ export const Primary: ComponentStory<typeof MuiFileInput> = () => {
   return (
     <ThemeProvider theme={theme}>
       <MuiFileInput
+        sx={{ width: 300 }}
         placeholder="Choisir un fichier"
         inputProps={{
           accept: 'video/*'

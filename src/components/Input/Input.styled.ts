@@ -8,7 +8,7 @@ const Label = styled('label')`
     opacity: 0 !important;
   }
 
-  span {
+  & > span {
     position: absolute;
     left: 0;
     right: 0;
@@ -24,6 +24,27 @@ const Label = styled('label')`
   }
 `
 
+const Filename = styled('div')`
+  display: flex;
+  width: 100%;
+
+  & > span {
+    display: block;
+  }
+
+  & > span:first-child {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  & > span:last-child {
+    flex-shrink: 0;
+    display: block;
+  }
+`
+
 export default {
-  Label
+  Label,
+  Filename
 }

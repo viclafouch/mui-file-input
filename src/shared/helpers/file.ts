@@ -12,3 +12,15 @@ export function matchIsFile(value: unknown): value is File {
 export function fileListToArray(filelist: FileList): File[] {
   return Array.from(filelist)
 }
+
+export function getFileDetails(value: File | File[]) {
+  const name = matchIsFile(value) ? value.name : value[0]?.name || ''
+  const parts = name.split('.')
+  const extension = parts.pop() as string
+  const filenameWithoutExtension = parts.join('.')
+
+  return {
+    filename: filenameWithoutExtension,
+    extension
+  }
+}

@@ -10,10 +10,10 @@ import Typography from '@mui/material/Typography'
 import { matchIsNonEmptyArray } from '@shared/helpers/array'
 import {
   fileListToArray,
+  getFileDetails,
   getTotalFilesSize,
   matchIsFile
 } from '@shared/helpers/file'
-import { truncateText } from '@shared/helpers/string'
 import type { MuiFileInputProps } from './index.types'
 
 export { MuiFileInputProps }
@@ -83,7 +83,7 @@ const MuiFileInput = <T extends boolean | undefined>(
     ? matchIsNonEmptyArray(value)
     : matchIsFile(value)
 
-  const getTheInputText = (): string => {
+  const getTheInputText = () => {
     if (value === null || (Array.isArray(value) && value.length === 0)) {
       return placeholder || ''
     }
@@ -97,9 +97,7 @@ const MuiFileInput = <T extends boolean | undefined>(
         return `${value.length} files`
       }
 
-      const filename = matchIsFile(value) ? value.name : value[0]?.name || ''
-
-      return truncateText(filename, 20)
+      return getFileDetails(value)
     }
 
     return ''

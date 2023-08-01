@@ -8,6 +8,9 @@ module.exports = {
     '@storybook/addon-interactions'
   ],
   framework: '@storybook/react',
+  typescript: {
+    reactDocgen: 'react-docgen-typescript-plugin'
+  },
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
