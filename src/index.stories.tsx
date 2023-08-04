@@ -1,16 +1,16 @@
 import React from 'react'
 import { createTheme, ThemeProvider } from '@mui/material'
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 import { MuiFileInput } from './index'
 
 export default {
   title: 'MuiFileInput',
   component: MuiFileInput
-} as ComponentMeta<typeof MuiFileInput>
+} as Meta<typeof MuiFileInput>
 
 const theme = createTheme()
 
-export const Primary: ComponentStory<typeof MuiFileInput> = () => {
+export const Primary: StoryFn<typeof MuiFileInput> = () => {
   const [value, setValue] = React.useState<File[]>([])
 
   const handleChange = (newValue: File[]) => {

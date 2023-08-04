@@ -4,7 +4,8 @@ module.exports = {
     '@viclafouch/eslint-config-viclafouch/react',
     '@viclafouch/eslint-config-viclafouch/hooks',
     '@viclafouch/eslint-config-viclafouch/typescript',
-    '@viclafouch/eslint-config-viclafouch/prettier'
+    'plugin:storybook/recommended',
+    '@viclafouch/eslint-config-viclafouch/prettier',
   ],
   parserOptions: {
     project: ['./tsconfig.json', './docs/tsconfig.json']
