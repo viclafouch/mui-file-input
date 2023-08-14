@@ -40,6 +40,21 @@ const handleChange = (value) => {}
 <MuiFileInput onChange={handleChange} />
 ```
 
+## `inputProps => accept`
+
+- Type: `string | undefined`
+- Default: `undefined`
+
+Like the native `accept` attribute, when present, it specifies that the user is allowed to enter (`png`, `jpeg`, videos, `pdf`..).
+Check here for more info : https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept
+
+```tsx
+// TS will throw an error if the value is a single File instead of an array of Files.
+<MuiFileInput inputProps={{ accept: 'video/*' }} />
+<MuiFileInput inputProps={{ accept: '.png, .jpeg' }} />
+<MuiFileInput inputProps={{ accept: 'audio/*, .pdf' }} />
+```
+
 ## `multiple`
 
 - Type: `boolean`
