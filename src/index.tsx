@@ -32,6 +32,7 @@ const MuiFileInput = <T extends boolean | undefined>(
     getSizeText,
     placeholder,
     hideSizeText,
+    hideIcon,
     inputProps,
     InputProps,
     multiple,
@@ -131,10 +132,12 @@ const MuiFileInput = <T extends boolean | undefined>(
       onChange={handleChange}
       className={`MuiFileInput-TextField ${className || ''}`}
       InputProps={{
-        startAdornment: (
+        startAdornment: !hideIcon ? (
           <InputAdornment position="start">
             <AttachFileIcon />
           </InputAdornment>
+        ) : (
+          <> </>
         ),
         endAdornment: (
           <InputAdornment

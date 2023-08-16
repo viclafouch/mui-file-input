@@ -79,6 +79,17 @@ In case you do not want to display the size of the current value.
 <MuiFileInput hideSizeText />
 ```
 
+## `hideIcon`
+
+- Type: `boolean`
+- Default: `false`
+
+In case you do not want to display the icon.
+
+```tsx
+<MuiFileInput hideIcon />
+```
+
 ## `getInputText`
 
 - Type: `(value: File | null) => string`
