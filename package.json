@@ -16,8 +16,8 @@
   "exports": {
     ".": {
       "import": "./dist/mui-file-input.es.js",
-      "default": "./dist/mui-file-input.es.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/mui-file-input.es.js"
     }
   },
   "repository": {
