@@ -32,13 +32,13 @@ const Filename = styled('div')`
     display: block;
   }
 
-  & > span:first-child {
+  & > span:first-of-type {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
   }
 
-  & > span:last-child {
+  & > span:last-of-type {
     flex-shrink: 0;
     display: block;
   }
