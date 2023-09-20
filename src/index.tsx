@@ -36,6 +36,7 @@ const MuiFileInput = <T extends boolean | undefined>(
     InputProps,
     multiple,
     className,
+    closeButtonProps,
     ...restTextFieldProps
   } = props
   const inputRef = React.useRef<HTMLInputElement>(null)
@@ -157,6 +158,7 @@ const MuiFileInput = <T extends boolean | undefined>(
               disabled={disabled}
               className="MuiFileInput-IconButton"
               onClick={handleClearAll}
+              {...closeButtonProps}
             >
               <CloseIcon fontSize="small" />
             </IconButton>

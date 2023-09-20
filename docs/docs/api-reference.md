@@ -103,3 +103,15 @@ Customize the render text inside the size Typography.
 <MuiFileInput getSizeText={(value) => 'Very big'} />
 ```
 
+## `closeButtonProps`
+
+- Type: `IconButtonProps`
+- Default: `undefined`
+
+Override the close button.
+
+Check here to check out all IconButtonProps : https://mui.com/material-ui/api/icon-button/
+
+```tsx
+<MuiFileInput closeButtonProps={{ title: "Remove" }} />
+```
