@@ -156,7 +156,7 @@ const MuiFileInput = <T extends boolean | undefined>(
               title="Clear"
               size="small"
               disabled={disabled}
-              className="MuiFileInput-IconButton"
+              className={`${closeButtonProps?.className} MuiFileInput-IconButton`}
               onClick={handleClearAll}
               {...closeButtonProps}
             >
