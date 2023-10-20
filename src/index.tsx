@@ -36,10 +36,11 @@ const MuiFileInput = <T extends boolean | undefined>(
     InputProps,
     multiple,
     className,
-    closeButtonProps,
+    closeButtonProps = {},
     ...restTextFieldProps
   } = props
-  const { className: iconButtonClassName = '', ...restIconButtonProps } = closeButtonProps
+  const { className: iconButtonClassName = '', ...restIconButtonProps } =
+    closeButtonProps
   const inputRef = React.useRef<HTMLInputElement>(null)
   const isMultiple =
     multiple ||
