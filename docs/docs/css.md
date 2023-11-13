@@ -16,7 +16,7 @@ Then, you can use the differents global class names (see below) to target an ele
 | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | `.MuiFileInput-TextField`                        | 	Styles applied to the root element.                                                                                                                   |
 | `.MuiFileInput-Typography-size-text`                        | 	Styles applied to the size [Typography](https://mui.com/material-ui/api/typography/).                                                                                                                |
-| `.MuiFileInput-IconButton`                        | 	Styles applied to to the clear [IconButton](https://mui.com/material-ui/api/icon-button/) component.                                                                                                       |
+| `.MuiFileInput-ClearIconButton`                        | 	Styles applied to to the clear [IconButton](https://mui.com/material-ui/api/icon-button/) component.                                                                                                       |
 | `.MuiFileInput-placeholder`                        | 	Styles applied to the placeholder.                                                                                                                   |
 
 For example: target the `.MuiFileInput-Typography-size-text` global class name to customize the size text.

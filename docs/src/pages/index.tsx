@@ -1,8 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import clsx from 'clsx'
 import { MuiFileInput } from 'mui-file-input'
 import Link from '@docusaurus/Link'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import AttachFileIcon from '@mui/icons-material/AttachFile'
+import CloseIcon from '@mui/icons-material/Close'
 import DocusaurusImageUrl from '@site/static/img/logo.svg'
 import Layout from '@theme/Layout'
 import styles from './index.module.css'
@@ -29,6 +32,15 @@ const HomepageHeader = () => {
           multiple
           onChange={handleChange}
           placeholder="Insert a file"
+          clearIconButtonProps={{
+            children: <CloseIcon fontSize="small" />
+          }}
+          InputProps={{
+            inputProps: {
+              accept: 'video/*'
+            },
+            startAdornment: <AttachFileIcon />
+          }}
         />
         <div className={styles.buttons}>
           <Link

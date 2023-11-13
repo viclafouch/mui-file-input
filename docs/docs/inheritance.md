@@ -11,5 +11,18 @@ See: https://mui.com/material-ui/api/text-field/
 ### Example
 
 ```jsx
-<MuiFileInput size="small" variant="outlined" disabled />
+import AttachFileIcon from '@mui/icons-material/AttachFile'
+// ...
+
+<MuiFileInput
+  size="small"
+  variant="outlined"
+  disabled
+  InputProps={{
+    inputProps: {
+      accept: 'video/*'
+    },
+    startAdornment: <AttachFileIcon />
+  }}
+/>
 ```
