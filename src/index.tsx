@@ -8,8 +8,6 @@ import {
   getTotalFilesSize,
   matchIsFile
 } from '@shared/helpers/file'
-import AttachFileIcon from '@mui/icons-material/AttachFile'
-import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
@@ -36,6 +34,7 @@ const MuiFileInput = <T extends boolean | undefined>(
     InputProps,
     multiple,
     className,
+    closeIcon,
     closeButtonProps = {},
     ...restTextFieldProps
   } = props
@@ -134,11 +133,6 @@ const MuiFileInput = <T extends boolean | undefined>(
       onChange={handleChange}
       className={`MuiFileInput-TextField ${className || ''}`}
       InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <AttachFileIcon />
-          </InputAdornment>
-        ),
         endAdornment: (
           <InputAdornment
             position="end"
@@ -153,17 +147,19 @@ const MuiFileInput = <T extends boolean | undefined>(
                 {getTotalSizeText()}
               </Typography>
             ) : null}
-            <IconButton
-              aria-label="Clear"
-              title="Clear"
-              size="small"
-              disabled={disabled}
-              className={`${iconButtonClassName} MuiFileInput-IconButton`}
-              onClick={handleClearAll}
-              {...restIconButtonProps}
-            >
-              <CloseIcon fontSize="small" />
-            </IconButton>
+            {closeIcon ? (
+              <IconButton
+                aria-label="Clear"
+                title="Clear"
+                size="small"
+                disabled={disabled}
+                className={`${iconButtonClassName} MuiFileInput-IconButton`}
+                onClick={handleClearAll}
+                {...restIconButtonProps}
+              >
+                {closeIcon}
+              </IconButton>
+            ) : null}
           </InputAdornment>
         ),
         ...InputProps,

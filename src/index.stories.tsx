@@ -1,5 +1,7 @@
 import React from 'react'
+import AttachFileIcon from '@mui/icons-material/AttachFile'
 import { createTheme, ThemeProvider } from '@mui/material'
+import InputAdornment from '@mui/material/InputAdornment'
 import { Meta, StoryFn } from '@storybook/react'
 import { MuiFileInput } from './index'
 
@@ -22,8 +24,15 @@ export const Primary: StoryFn<typeof MuiFileInput> = () => {
       <MuiFileInput
         sx={{ width: 300 }}
         placeholder="Choisir un fichier"
-        inputProps={{
-          accept: 'video/*'
+        InputProps={{
+          inputProps: {
+            accept: 'video/*'
+          },
+          startAdornment: (
+            <InputAdornment position="start">
+              <AttachFileIcon />
+            </InputAdornment>
+          )
         }}
         multiple
         value={value}
