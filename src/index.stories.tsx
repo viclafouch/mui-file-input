@@ -28,7 +28,7 @@ export const Primary: StoryFn<typeof MuiFileInput> = () => {
         multiple
         value={value}
         onChange={handleChange}
-        label="test"
+        label="Your photo"
       />
     </ThemeProvider>
   )

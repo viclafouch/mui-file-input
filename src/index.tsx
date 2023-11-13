@@ -1,12 +1,6 @@
 import React from 'react'
 import prettyBytes from 'pretty-bytes'
 import Input from '@components/Input/Input'
-import AttachFileIcon from '@mui/icons-material/AttachFile'
-import CloseIcon from '@mui/icons-material/Close'
-import IconButton from '@mui/material/IconButton'
-import InputAdornment from '@mui/material/InputAdornment'
-import TextField from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
 import { matchIsNonEmptyArray } from '@shared/helpers/array'
 import {
   fileListToArray,
@@ -14,6 +8,12 @@ import {
   getTotalFilesSize,
   matchIsFile
 } from '@shared/helpers/file'
+import AttachFileIcon from '@mui/icons-material/AttachFile'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import InputAdornment from '@mui/material/InputAdornment'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
 import type { MuiFileInputProps } from './index.types'
 
 export { MuiFileInputProps }
