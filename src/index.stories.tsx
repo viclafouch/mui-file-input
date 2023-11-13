@@ -25,7 +25,7 @@ export const Primary: StoryFn<typeof MuiFileInput> = () => {
       <MuiFileInput
         sx={{ width: 300 }}
         placeholder="Choisir un fichier"
-        closeButtonProps={{
+        clearIconButtonProps={{
           children: <CloseIcon fontSize="small" />
         }}
         InputProps={{
