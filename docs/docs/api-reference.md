@@ -119,7 +119,7 @@ import CloseIcon from '@mui/icons-material/Close'
 //...
 
 <MuiFileInput
-  closeButtonProps={{
+  clearIconButtonProps={{
     title: "Remove",
     children: <CloseIcon fontSize="small" />
   }}
