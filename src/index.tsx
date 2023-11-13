@@ -142,24 +142,21 @@ const MuiFileInput = <T extends boolean | undefined>(
               <Typography
                 variant="caption"
                 mr="2px"
+                lineHeight={1}
                 className="MuiFileInput-Typography-size-text"
               >
                 {getTotalSizeText()}
               </Typography>
             ) : null}
-            {closeIcon ? (
-              <IconButton
-                aria-label="Clear"
-                title="Clear"
-                size="small"
-                disabled={disabled}
-                className={`${iconButtonClassName} MuiFileInput-IconButton`}
-                onClick={handleClearAll}
-                {...restIconButtonProps}
-              >
-                {closeIcon}
-              </IconButton>
-            ) : null}
+            <IconButton
+              aria-label="Clear"
+              title="Clear"
+              size="small"
+              disabled={disabled}
+              className={`${iconButtonClassName} MuiFileInput-IconButton`}
+              onClick={handleClearAll}
+              {...restIconButtonProps}
+            />
           </InputAdornment>
         ),
         ...InputProps,

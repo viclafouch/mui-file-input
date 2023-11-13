@@ -1,5 +1,6 @@
 import React from 'react'
 import AttachFileIcon from '@mui/icons-material/AttachFile'
+import CloseIcon from '@mui/icons-material/Close'
 import { createTheme, ThemeProvider } from '@mui/material'
 import InputAdornment from '@mui/material/InputAdornment'
 import { Meta, StoryFn } from '@storybook/react'
@@ -24,6 +25,9 @@ export const Primary: StoryFn<typeof MuiFileInput> = () => {
       <MuiFileInput
         sx={{ width: 300 }}
         placeholder="Choisir un fichier"
+        closeButtonProps={{
+          children: <CloseIcon fontSize="small" />
+        }}
         InputProps={{
           inputProps: {
             accept: 'video/*'
