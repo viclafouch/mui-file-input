@@ -40,6 +40,7 @@ const MuiFileInput = <T extends boolean | undefined>(
   const { className: iconButtonClassName = '', ...restClearIconButtonProps } =
     clearIconButtonProps
   const inputRef = React.useRef<HTMLInputElement>(null)
+  const { startAdornment, ...restInputProps } = InputProps || {}
   const isMultiple =
     multiple ||
     (inputProps?.multiple as boolean) ||
@@ -132,6 +133,9 @@ const MuiFileInput = <T extends boolean | undefined>(
       onChange={handleChange}
       className={`MuiFileInput-TextField ${className || ''}`}
       InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">{startAdornment}</InputAdornment>
+        ),
         endAdornment: (
           <InputAdornment
             position="end"
@@ -158,7 +162,7 @@ const MuiFileInput = <T extends boolean | undefined>(
             />
           </InputAdornment>
         ),
-        ...InputProps,
+        ...restInputProps,
         inputProps: {
           text: getTheInputText(),
           multiple: isMultiple,
@@ -169,7 +173,6 @@ const MuiFileInput = <T extends boolean | undefined>(
           ...inputProps,
           ...InputProps?.inputProps
         },
-        // @ts-ignore
         inputComponent: Input
       }}
       {...restTextFieldProps}
