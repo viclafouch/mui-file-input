@@ -39,7 +39,6 @@ const MuiFileInput = <T extends boolean | undefined>(
   } = props
   const { className: iconButtonClassName = '', ...restClearIconButtonProps } =
     clearIconButtonProps
-  const inputRef = React.useRef<HTMLInputElement>(null)
   const { startAdornment, ...restInputProps } = InputProps || {}
   const isMultiple =
     multiple ||
@@ -159,7 +158,6 @@ const MuiFileInput = <T extends boolean | undefined>(
           multiple: isMultiple,
           isPlaceholder:
             value === null || (Array.isArray(value) && value.length === 0),
-          ref: inputRef,
           placeholder,
           ...inputProps,
           ...InputProps?.inputProps
