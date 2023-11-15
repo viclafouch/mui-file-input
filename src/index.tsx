@@ -47,18 +47,9 @@ const MuiFileInput = <T extends boolean | undefined>(
     (InputProps?.inputProps?.multiple as boolean) ||
     false
 
-  const clearInputValue = () => {
-    const inputEl = inputRef.current
-
-    if (inputEl) {
-      inputEl.value = ''
-    }
-  }
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files
     const files = fileList ? fileListToArray(fileList) : []
-    clearInputValue()
 
     if (isMultiple) {
       onChange?.(files as NonNullable<typeof value>)

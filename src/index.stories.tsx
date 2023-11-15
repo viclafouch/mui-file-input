@@ -21,23 +21,24 @@ export const Primary: StoryFn<typeof MuiFileInput> = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <MuiFileInput
-        sx={{ width: 300 }}
-        placeholder="Choisir un fichier"
-        clearIconButtonProps={{
-          children: <CloseIcon fontSize="small" />
-        }}
-        InputProps={{
-          inputProps: {
-            accept: 'video/*'
-          },
-          startAdornment: <AttachFileIcon />
-        }}
-        multiple
-        value={value}
-        onChange={handleChange}
-        label="Your photo"
-      />
+      <form>
+        <MuiFileInput
+          sx={{ width: 300 }}
+          placeholder="Choisir un fichier"
+          clearIconButtonProps={{
+            children: <CloseIcon fontSize="small" />
+          }}
+          InputProps={{
+            startAdornment: <AttachFileIcon />
+          }}
+          required
+          multiple
+          value={value}
+          onChange={handleChange}
+          label="Your photo"
+        />
+        <button type="submit">Submit</button>
+      </form>
     </ThemeProvider>
   )
 }
