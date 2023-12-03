@@ -36,9 +36,6 @@ const HomepageHeader = () => {
             children: <CloseIcon fontSize="small" />
           }}
           InputProps={{
-            inputProps: {
-              accept: 'video/*'
-            },
             startAdornment: <AttachFileIcon />
           }}
         />
