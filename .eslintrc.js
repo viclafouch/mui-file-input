@@ -5,12 +5,18 @@ module.exports = {
     '@viclafouch/eslint-config-viclafouch/hooks',
     '@viclafouch/eslint-config-viclafouch/typescript',
     'plugin:storybook/recommended',
-    '@viclafouch/eslint-config-viclafouch/prettier',
+    '@viclafouch/eslint-config-viclafouch/prettier'
   ],
   parserOptions: {
     project: ['./tsconfig.json', './docs/tsconfig.json']
   },
   rules: {
+    'react-hooks/exhaustive-deps': [
+      'error',
+      {
+        additionalHooks: '(useIsomorphicLayoutEffect)'
+      }
+    ],
     'import/no-extraneous-dependencies': [
       'error',
       {

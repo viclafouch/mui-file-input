@@ -1,4 +1,4 @@
-import { IconButtonProps } from '@mui/material/IconButton'
+import type { IconButtonProps } from '@mui/material/IconButton'
 import type { TextFieldProps as MuiTextFieldProps } from '@mui/material/TextField'
 
 type TextFieldProps = Omit<
@@ -6,13 +6,23 @@ type TextFieldProps = Omit<
   'onChange' | 'select' | 'type' | 'multiline' | 'defaultValue'
 >
 
-export type MuiFileInputProps<T extends boolean | undefined> =
-  TextFieldProps & {
-    value?: T extends true ? File[] : File | null
-    hideSizeText?: boolean
-    multiple?: T
-    getInputText?: (files: T extends true ? File[] : File | null) => string
-    getSizeText?: (files: T extends true ? File[] : File | null) => string
-    onChange?: (value: T extends true ? File[] : File | null) => void
-    clearIconButtonProps?: IconButtonProps
-  }
+type MultipleOrSingleFile =
+  | {
+      value?: File | null
+      getInputText?: (files: File | null) => string
+      getSizeText?: (files: File | null) => string
+      onChange?: (value: File | null) => void
+      multiple?: false | undefined
+    }
+  | {
+      value?: File[]
+      getInputText?: (files: File[]) => string
+      getSizeText?: (files: File[]) => string
+      onChange?: (value: File[]) => void
+      multiple: true
+    }
+
+export type MuiFileInputProps = TextFieldProps & {
+  hideSizeText?: boolean
+  clearIconButtonProps?: IconButtonProps
+} & MultipleOrSingleFile

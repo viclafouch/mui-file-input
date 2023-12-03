@@ -37,6 +37,14 @@ export const Primary: StoryFn<typeof MuiFileInput> = () => {
           onChange={handleChange}
           label="Your photo"
         />
+        <button
+          type="button"
+          onClick={() => {
+            return setValue([])
+          }}
+        >
+          Clear
+        </button>
         <button type="submit">Submit</button>
       </form>
     </ThemeProvider>
