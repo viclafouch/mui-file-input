@@ -11,12 +11,12 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true
   },
-  resolve:{
-    alias:{
-      '@assets' : path.resolve(__dirname, './src/assets'),
-      '@shared' : path.resolve(__dirname, './src/shared'),
-      '@components' : path.resolve(__dirname, './src/components'),
-    },
+  resolve: {
+    alias: {
+      '@assets': path.resolve(__dirname, './src/assets'),
+      '@shared': path.resolve(__dirname, './src/shared'),
+      '@components': path.resolve(__dirname, './src/components')
+    }
   },
   build: {
     target: 'esnext',
@@ -48,6 +48,6 @@ export default defineConfig({
   plugins: [
     peerDepsExternal(),
     react(),
-    dts({ rollupTypes: true })
+    dts({ rollupTypes: true, exclude: ['/**/*.stories.tsx', '/**/*.test.tsx'] })
   ]
 })
