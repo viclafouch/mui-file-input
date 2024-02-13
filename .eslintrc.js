@@ -4,7 +4,6 @@ module.exports = {
     '@viclafouch/eslint-config-viclafouch/react',
     '@viclafouch/eslint-config-viclafouch/hooks',
     '@viclafouch/eslint-config-viclafouch/typescript',
-    'plugin:storybook/recommended',
     '@viclafouch/eslint-config-viclafouch/prettier'
   ],
   parserOptions: {
