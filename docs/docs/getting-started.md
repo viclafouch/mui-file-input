@@ -38,7 +38,7 @@ const MyComponent = () => {
 
 ## Next.js integration
 
-Learn how to use MUI file input with Next.js
+Learn how to use MUI File Input with [Next.js](https://nextjs.org/).
 
 Once you have installed `MUI File Input` in your next.js project, it is important to transpile it as it is an ESM package first.
 
