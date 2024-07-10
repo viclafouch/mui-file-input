@@ -10,12 +10,10 @@ type InputProps = InputBaseComponentProps & {
 const Input = React.forwardRef(
   (props: InputProps, ref: React.ForwardedRef<HTMLInputElement>) => {
     const { text, isPlaceholder, placeholder, ...restInputProps } = props
-    // eslint-disable-next-line react/hook-use-state
-    const id = React.useId()
 
     return (
-      <Styled.Label htmlFor={id}>
-        <input {...restInputProps} ref={ref} id={id} />
+      <Styled.Label htmlFor={props.id}>
+        <input {...restInputProps} ref={ref} id={props.id} />
         {text ? (
           <span
             aria-placeholder={placeholder}
