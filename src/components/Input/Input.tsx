@@ -12,8 +12,8 @@ const Input = React.forwardRef(
     const { text, isPlaceholder, placeholder, ...restInputProps } = props
 
     return (
-      <Styled.Label htmlFor={props.id}>
-        <input {...restInputProps} ref={ref} id={props.id} />
+      <Styled.Label>
+        <input {...restInputProps} ref={ref} />
         {text ? (
           <span
             aria-placeholder={placeholder}
