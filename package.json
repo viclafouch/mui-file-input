@@ -36,15 +36,16 @@
     "file"
   ],
   "scripts": {
-    "build": "npm run lint && npm run test -- run && vite build",
+    "build": "pnpm lint && pnpm test -- run && vite build",
     "lint": "tsc && eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "pnpm lint -- --fix",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",
     "release": "standard-version",
     "coverage": "vitest run --coverage",
-    "prepare": "husky"
+    "prepare": "husky",
+    "preinstall": "npx only-allow pnpm"
   },
   "standard-version": {
     "scripts": {
