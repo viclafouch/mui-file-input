@@ -185,6 +185,7 @@ export const MuiFileInput = React.forwardRef(
             ...inputProps,
             ...InputProps?.inputProps
           },
+          // @ts-expect-error
           inputComponent: Input
         }}
         {...restTextFieldProps}

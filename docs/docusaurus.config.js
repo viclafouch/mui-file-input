@@ -3,7 +3,9 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const lightCodeTheme = require('prism-react-renderer/themes/github')
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
