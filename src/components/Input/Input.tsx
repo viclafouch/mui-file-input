@@ -1,15 +1,18 @@
 import React from 'react'
 import Styled from './Input.styled'
 
-type Toto = React.ComponentProps<'input'> & {
+type InputInternalProps = React.ComponentProps<'input'> & {
   text: string | { filename: string; extension: string }
   isPlaceholder: boolean
 }
 
-const Input = (
-  { text, isPlaceholder, placeholder, ...restInputProps }: Toto,
-  ref: React.ForwardedRef<HTMLInputElement>
-) => {
+const Input = ({
+  text,
+  isPlaceholder,
+  placeholder,
+  ref,
+  ...restInputProps
+}: InputInternalProps & { ref?: React.Ref<HTMLInputElement> }) => {
   return (
     <Styled.Label>
       <input {...restInputProps} ref={ref} />
@@ -32,4 +35,4 @@ const Input = (
   )
 }
 
-export default React.forwardRef(Input)
+export default Input

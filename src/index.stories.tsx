@@ -2,13 +2,13 @@ import React from 'react'
 import AttachFileIcon from '@mui/icons-material/AttachFile'
 import CloseIcon from '@mui/icons-material/Close'
 import { createTheme, ThemeProvider } from '@mui/material'
-import { Meta, StoryFn } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react-vite'
 import { MuiFileInput } from './index'
 
 export default {
   title: 'MuiFileInput',
   component: MuiFileInput
-} as Meta<typeof MuiFileInput>
+} satisfies Meta<typeof MuiFileInput>
 
 const theme = createTheme()
 
@@ -27,8 +27,10 @@ export const Primary: StoryFn<typeof MuiFileInput> = () => {
         clearIconButtonProps={{
           children: <CloseIcon fontSize="small" />
         }}
-        InputProps={{
-          startAdornment: <AttachFileIcon />
+        slotProps={{
+          input: {
+            startAdornment: <AttachFileIcon />
+          }
         }}
         required
         multiple

@@ -1,20 +1,28 @@
 import React from 'react'
 import prettyBytes from 'pretty-bytes'
 import Input from '@components/Input/Input'
-import { matchIsNonEmptyArray } from '@shared/helpers/array'
-import {
-  fileListToArray,
-  getFileDetails,
-  getTotalFilesSize,
-  matchIsFile
-} from '@shared/helpers/file'
 import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
+import { matchIsNonEmptyArray } from '@shared/helpers/array'
+import {
+  getFileDetails,
+  getTotalFilesSize,
+  matchIsFile
+} from '@shared/helpers/file'
 import type { MuiFileInputProps } from './index.types'
 
-export { MuiFileInputProps }
+export type { MuiFileInputProps }
+
+type ConsumerInputSlotProps = {
+  startAdornment?: React.ReactNode
+  inputProps?: Record<string, unknown>
+  inputComponent?: React.ElementType
+  [key: string]: unknown
+}
+
+const EMPTY_OBJECT = {} as Record<string, unknown>
 
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect
@@ -29,22 +37,38 @@ export const MuiFileInput = (props: MuiFileInputProps) => {
     placeholder,
     hideSizeText,
     ref,
-    inputProps,
-    InputProps,
+    slotProps,
     multiple,
     className,
-    clearIconButtonProps = {},
+    clearIconButtonProps = EMPTY_OBJECT,
     ...restTextFieldProps
   } = props
   const { className: iconButtonClassName = '', ...restClearIconButtonProps } =
     clearIconButtonProps
   const inputRef = React.useRef<HTMLInputElement>(null)
-  const { startAdornment, ...restInputProps } = InputProps || {}
-  const isMultiple =
-    multiple ||
-    (inputProps?.multiple as boolean) ||
-    (InputProps?.inputProps?.multiple as boolean) ||
-    false
+
+  const consumerInputSlotProps = slotProps?.input as
+    | ConsumerInputSlotProps
+    | undefined
+  const consumerStartAdornment = consumerInputSlotProps?.startAdornment
+  const {
+    startAdornment,
+    inputProps: nestedInputProps,
+    inputComponent,
+    ...consumerRestInputSlotProps
+  } = consumerInputSlotProps ?? EMPTY_OBJECT
+  void startAdornment
+  void nestedInputProps
+  void inputComponent
+
+  const consumerHtmlInputProps = slotProps?.htmlInput as
+    | Record<string, unknown>
+    | undefined
+  const { multiple: htmlMultiple, ...consumerRestHtmlInputProps } =
+    consumerHtmlInputProps ?? EMPTY_OBJECT
+  void htmlMultiple
+
+  const isMultiple = multiple || Boolean(consumerHtmlInputProps?.multiple)
 
   const resetInputValue = () => {
     if (inputRef.current) {
@@ -54,7 +78,7 @@ export const MuiFileInput = (props: MuiFileInputProps) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files
-    const files = fileList ? fileListToArray(fileList) : []
+    const files = fileList ? Array.from(fileList) : []
 
     if (multiple) {
       onChange?.(files)
@@ -97,7 +121,7 @@ export const MuiFileInput = (props: MuiFileInputProps) => {
     }
   }, [hasAtLeastOneFile])
 
-  const getTheInputText = () => {
+  const getDisplayText = () => {
     if (value === null || (Array.isArray(value) && value.length === 0)) {
       return placeholder || ''
     }
@@ -117,7 +141,7 @@ export const MuiFileInput = (props: MuiFileInputProps) => {
     return ''
   }
 
-  const getTotalSizeText = (): string => {
+  const getTotalSizeText = () => {
     if (typeof getSizeText === 'function' && value !== undefined) {
       return getSizeText(value as File & File[])
     }
@@ -144,48 +168,51 @@ export const MuiFileInput = (props: MuiFileInputProps) => {
       disabled={disabled}
       onChange={handleChange}
       className={`MuiFileInput-TextField ${className || ''}`}
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">{startAdornment}</InputAdornment>
-        ),
-        endAdornment: (
-          <InputAdornment
-            position="end"
-            style={{ visibility: hasAtLeastOneFile ? 'visible' : 'hidden' }}
-          >
-            {!hideSizeText ? (
-              <Typography
-                variant="caption"
-                mr="2px"
-                lineHeight={1}
-                className="MuiFileInput-Typography-size-text"
-              >
-                {getTotalSizeText()}
-              </Typography>
-            ) : null}
-            <IconButton
-              aria-label="Clear"
-              title="Clear"
-              size="small"
-              disabled={disabled}
-              className={`${iconButtonClassName} MuiFileInput-ClearIconButton`}
-              onClick={handleClearAll}
-              {...restClearIconButtonProps}
-            />
-          </InputAdornment>
-        ),
-        ...restInputProps,
-        inputProps: {
-          text: getTheInputText(),
-          multiple: isMultiple,
-          ref: inputRef,
-          isPlaceholder: !hasAtLeastOneFile,
-          placeholder,
-          ...inputProps,
-          ...InputProps?.inputProps
+      slotProps={{
+        input: {
+          startAdornment: consumerStartAdornment ? (
+            <InputAdornment position="start">
+              {consumerStartAdornment}
+            </InputAdornment>
+          ) : undefined,
+          endAdornment: (
+            <InputAdornment
+              position="end"
+              style={{ visibility: hasAtLeastOneFile ? 'visible' : 'hidden' }}
+            >
+              {!hideSizeText ? (
+                <Typography
+                  variant="caption"
+                  mr="2px"
+                  lineHeight={1}
+                  className="MuiFileInput-Typography-size-text"
+                >
+                  {getTotalSizeText()}
+                </Typography>
+              ) : null}
+              <IconButton
+                aria-label="Clear"
+                title="Clear"
+                size="small"
+                disabled={disabled}
+                className={`${iconButtonClassName} MuiFileInput-ClearIconButton`}
+                onClick={handleClearAll}
+                {...restClearIconButtonProps}
+              />
+            </InputAdornment>
+          ),
+          ...consumerRestInputSlotProps,
+          inputProps: {
+            text: getDisplayText(),
+            multiple: isMultiple,
+            ref: inputRef,
+            isPlaceholder: !hasAtLeastOneFile,
+            placeholder
+          },
+          // @ts-expect-error -- Input requires custom props (text, isPlaceholder) not in MUI's InputBaseComponentProps
+          inputComponent: Input
         },
-        // @ts-expect-error
-        inputComponent: Input
+        htmlInput: consumerRestHtmlInputProps
       }}
       {...restTextFieldProps}
     />
