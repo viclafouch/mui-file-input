@@ -30,6 +30,9 @@ export const Primary: StoryFn<typeof MuiFileInput> = () => {
         slotProps={{
           input: {
             startAdornment: <AttachFileIcon />
+          },
+          htmlInput: {
+            accept: '.csv'
           }
         }}
         required

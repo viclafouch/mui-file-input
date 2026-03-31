@@ -202,17 +202,17 @@ export const MuiFileInput = (props: MuiFileInputProps) => {
             </InputAdornment>
           ),
           ...consumerRestInputSlotProps,
-          inputProps: {
-            text: getDisplayText(),
-            multiple: isMultiple,
-            ref: inputRef,
-            isPlaceholder: !hasAtLeastOneFile,
-            placeholder
-          },
           // @ts-expect-error -- Input requires custom props (text, isPlaceholder) not in MUI's InputBaseComponentProps
           inputComponent: Input
         },
-        htmlInput: consumerRestHtmlInputProps
+        htmlInput: {
+          text: getDisplayText(),
+          multiple: isMultiple,
+          ref: inputRef,
+          isPlaceholder: !hasAtLeastOneFile,
+          placeholder,
+          ...consumerRestHtmlInputProps
+        }
       }}
       {...restTextFieldProps}
     />
