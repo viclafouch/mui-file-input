@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import clsx from 'clsx'
 import { MuiFileInput } from 'mui-file-input'
@@ -35,8 +34,10 @@ const HomepageHeader = () => {
           clearIconButtonProps={{
             children: <CloseIcon fontSize="small" />
           }}
-          InputProps={{
-            startAdornment: <AttachFileIcon />
+          slotProps={{
+            input: {
+              startAdornment: <AttachFileIcon />
+            }
           }}
         />
         <div className={styles.buttons}>

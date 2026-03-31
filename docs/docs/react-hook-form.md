@@ -1,24 +1,27 @@
+---
+sidebar_position: 7
+---
+
 # React Hook Form
 
 Here an example if you want to plug `MuiFileInput` to your form using [React Hook Form](https://react-hook-form.com/).
 
 ```tsx
-import React from "react";
-import ReactDOM from "react-dom";
-import Button from "@mui/material/Button";
-import { MuiFileInput } from "mui-file-input";
-import { Controller, useForm } from "react-hook-form";
+import React from 'react'
+import Button from '@mui/material/Button'
+import { MuiFileInput } from 'mui-file-input'
+import { Controller, useForm } from 'react-hook-form'
 
 const App = () => {
   const { control, handleSubmit } = useForm({
     defaultValues: {
       file: undefined
     }
-  });
+  })
 
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
-  };
+    alert(JSON.stringify(data))
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -33,7 +36,7 @@ const App = () => {
           />
         )}
       />
-     <div>
+      <div>
         <Button type="submit" variant="contained" sx={{ mt: 2 }}>
           Submit
         </Button>

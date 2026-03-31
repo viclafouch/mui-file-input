@@ -1,16 +1,16 @@
 ---
-sidebar_position: 4
+sidebar_position: 6
 ---
 
 # TypeScript
 
 This package is written in **TypeScript**. So you don't need to create your own types. Here an example if you use **TypeScript**.
 
-**Nota bene**: Props are defined within the `MuiFileInputProps` interface.
+**Nota bene**: Props are defined within the `MuiFileInputProps` type.
 
 ```tsx
 import React from 'react'
-import { MuiFileInput } from 'mui-file-input'
+import { MuiFileInput, type MuiFileInputProps } from 'mui-file-input'
 
 const MyComponent = () => {
   const [value, setValue] = React.useState<File | null>(null)

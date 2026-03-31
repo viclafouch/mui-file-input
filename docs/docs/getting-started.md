@@ -12,6 +12,10 @@ or you can use **yarn**
 ```bash
 yarn add mui-file-input
 ```
+or you can use **pnpm**
+```bash
+pnpm add mui-file-input
+```
 
 We have completed installing the package.
 
@@ -19,19 +23,19 @@ We have completed installing the package.
 
 Here is a simple usage for using the component:
 
-```jsx
+```tsx
 import React from 'react'
 import { MuiFileInput } from 'mui-file-input'
 
 const MyComponent = () => {
-  const [file, setFile] = React.useState(null)
+  const [value, setValue] = React.useState(null)
 
-  const handleChange = (newFile) => {
-    setFile(newFile)
+  const handleChange = (newValue) => {
+    setValue(newValue)
   }
 
   return (
-    <MuiFileInput value={file} onChange={handleChange} />
+    <MuiFileInput value={value} onChange={handleChange} />
   )
 }
 ```
@@ -40,18 +44,19 @@ const MyComponent = () => {
 
 Learn how to use MUI File Input with [Next.js](https://nextjs.org/).
 
-Once you have installed `MUI File Input` in your next.js project, it is important to transpile it as it is an ESM package first.
+Once you have installed `MUI File Input` in your Next.js project, it is important to transpile it as it is an ESM package first.
 
 ```js
+// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
- transpilePackages: ['mui-file-input'],
- // your config
+  transpilePackages: ['mui-file-input'],
+  // your config
 }
 
-module.exports = nextConfig
+export default nextConfig
 ```
 
-## Congratulations !
+## Congratulations!
 
 That's all, now let's deep dive into the [props](/docs/api-reference).

@@ -21,7 +21,7 @@ const file = new File(["foo"], "foo.txt", {
 
 <MuiFileInput />
 <MuiFileInput value={file} />
-<MuiFileInput multiple value={[file]}/>
+<MuiFileInput multiple value={[file]} />
 ```
 
 ## `onChange`
@@ -31,28 +31,24 @@ const file = new File(["foo"], "foo.txt", {
 
 Gets called once the user updates the file value.
 
-Example:
-
 ```tsx
-
 const handleChange = (value) => {}
 
 <MuiFileInput onChange={handleChange} />
 ```
 
-## `inputProps => accept`
+## `slotProps.htmlInput => accept`
 
 - Type: `string | undefined`
 - Default: `undefined`
 
 Like the native `accept` attribute, when present, it specifies that the user is allowed to enter (`png`, `jpeg`, videos, `pdf`..).
-Check here for more info : https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept
+Check here for more info: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept
 
 ```tsx
-// TS will throw an error if the value is a single File instead of an array of Files.
-<MuiFileInput inputProps={{ accept: 'video/*' }} />
-<MuiFileInput inputProps={{ accept: '.png, .jpeg' }} />
-<MuiFileInput inputProps={{ accept: 'audio/*, .pdf' }} />
+<MuiFileInput slotProps={{ htmlInput: { accept: 'video/*' } }} />
+<MuiFileInput slotProps={{ htmlInput: { accept: '.png, .jpeg' } }} />
+<MuiFileInput slotProps={{ htmlInput: { accept: 'audio/*, .pdf' } }} />
 ```
 
 ## `multiple`
@@ -106,11 +102,11 @@ Customize the render text inside the size Typography.
 ## `clearIconButtonProps`
 
 - Type: `IconButtonProps`
-- Default: `undefined`
+- Default: `{}`
 
 Override the clear IconButton and add a MUI icon.
 
-Check here to check out all IconButtonProps : https://mui.com/material-ui/api/icon-button/
+See all IconButtonProps: https://mui.com/material-ui/api/icon-button/
 
 ⚠ You have to install [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) library yourself.
 
