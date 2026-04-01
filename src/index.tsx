@@ -17,7 +17,6 @@ export type { MuiFileInputProps }
 
 type ConsumerInputSlotProps = {
   startAdornment?: React.ReactNode
-  inputProps?: Record<string, unknown>
   inputComponent?: React.ElementType
   [key: string]: unknown
 }
@@ -51,14 +50,9 @@ export const MuiFileInput = (props: MuiFileInputProps) => {
     | ConsumerInputSlotProps
     | undefined
   const consumerStartAdornment = consumerInputSlotProps?.startAdornment
-  const {
-    startAdornment,
-    inputProps: nestedInputProps,
-    inputComponent,
-    ...consumerRestInputSlotProps
-  } = consumerInputSlotProps ?? EMPTY_OBJECT
+  const { startAdornment, inputComponent, ...consumerRestInputSlotProps } =
+    consumerInputSlotProps ?? EMPTY_OBJECT
   void startAdornment
-  void nestedInputProps
   void inputComponent
 
   const consumerHtmlInputProps = slotProps?.htmlInput as
@@ -202,17 +196,17 @@ export const MuiFileInput = (props: MuiFileInputProps) => {
             </InputAdornment>
           ),
           ...consumerRestInputSlotProps,
-          inputProps: {
-            text: getDisplayText(),
-            multiple: isMultiple,
-            ref: inputRef,
-            isPlaceholder: !hasAtLeastOneFile,
-            placeholder
-          },
           // @ts-expect-error -- Input requires custom props (text, isPlaceholder) not in MUI's InputBaseComponentProps
           inputComponent: Input
         },
-        htmlInput: consumerRestHtmlInputProps
+        htmlInput: {
+          text: getDisplayText(),
+          multiple: isMultiple,
+          ref: inputRef,
+          isPlaceholder: !hasAtLeastOneFile,
+          placeholder,
+          ...consumerRestHtmlInputProps
+        }
       }}
       {...restTextFieldProps}
     />

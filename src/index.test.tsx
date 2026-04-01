@@ -10,6 +10,21 @@ describe('components/MuiFileInput', () => {
     render(<MuiFileInput />)
   })
 
+  test('should apply slotProps.htmlInput props to the native input', () => {
+    const screen = render(
+      <MuiFileInput
+        label="Upload"
+        slotProps={{
+          htmlInput: {
+            accept: '.xlsx'
+          }
+        }}
+      />
+    )
+    const input = screen.getByLabelText('Upload')
+    expect(input).toHaveAttribute('accept', '.xlsx')
+  })
+
   test('should meet accessibility standard WCAG 2.2AAA', async () => {
     const { container } = render(<MuiFileInput label="test label" />)
     const results = await axe.run(container, {
