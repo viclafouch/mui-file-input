@@ -177,8 +177,7 @@ export const MuiFileInput = (props: MuiFileInputProps) => {
               {!hideSizeText ? (
                 <Typography
                   variant="caption"
-                  mr="2px"
-                  lineHeight={1}
+                  sx={{ mr: '2px', lineHeight: 1 }}
                   className="MuiFileInput-Typography-size-text"
                 >
                   {getTotalSizeText()}
